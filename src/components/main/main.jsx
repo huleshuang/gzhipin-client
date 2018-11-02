@@ -1,7 +1,9 @@
 import React,{Component} from 'react';
 import {Route,Switch} from 'react-router-dom';
+
 import DashenInfo from '../dashen-info';
-import BossInfo from '../boss-info'
+
+import BossInfo from '../../containers/boss-info'
 
 class Main extends Component{
   render(){

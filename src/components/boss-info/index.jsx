@@ -4,7 +4,14 @@ import {NavBar,InputItem,Button,TextareaItem} from 'antd-mobile'
 
 import HeaderSelector from '../header-selector';
 
+import PropTypes from "prop-types";
+
 class BossInfo extends Component{
+
+  static propTypes={
+    user:PropTypes.object.isRequired,
+    updateUser:PropTypes.func.isRequired
+  }
 
   //初始化数据状态
   state={
@@ -31,11 +38,19 @@ class BossInfo extends Component{
     })
   }
 
+  //保存的事件
+  saveSub=()=>{
+    this.props.updateUser(this.state);
+  }
+
   render(){
+    const {msg} = this.props.user;
     return (
       <div>
         <NavBar>老板完善信息</NavBar>
         <HeaderSelector setHeader={this.setHeader}/>
+        {msg ? <p className="error-msg">{msg}</p> : ''}
+
         <InputItem onChange={val=>this.handleFormData('post',val)}>招聘职位:</InputItem>
         <InputItem onChange={val=>this.handleFormData('company',val)}>公司名称:</InputItem>
         <InputItem onChange={val=>this.handleFormData('salary',val)}>职位薪资:</InputItem>

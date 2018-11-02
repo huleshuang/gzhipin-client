@@ -37,7 +37,7 @@ class HeaderSelector extends Component{
   render(){
     //获取数据状态 更新图片的显示
     const {icon} = this.state;
-    const headerUI = icon ? <div>请选择头像：<img src={icon}/></div> :'请选择头像'
+    const headerUI = icon ? <div>请选择头像：<img src={icon} alt="我是header"/></div> :'请选择头像'
 
     const data = Array.from(new Array(20)).map((item, index) => ({
       icon: require(`./avatars/头像${index+1}.png`),

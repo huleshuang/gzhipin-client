@@ -8,7 +8,7 @@
 
 import {combineReducers} from 'redux';
 
-import {AUTH_SUCCESS,ERROR_MSG} from './action-typs';
+import {AUTH_SUCCESS,ERROR_MSG, RECEIVE_USER, RESET_USER} from './action-typs';
 
 import getRedirectPath from '../utils/index'
 
@@ -30,12 +30,17 @@ function user (preState = initUser,action){
       return {username:action.data.username,type:action.data.type,msg:'',redirectTo:getRedirectPath(action.data.type,action.data.header)}
 
     case ERROR_MSG: //请求出错 ，错误信息提示
-
       // 在node中和浏览器端默认对象是不能使用... ，但是react脚手架项目，babel帮我让对象能够使用...
       //...preState 将之前的状态 展开，哪个在后面 哪一个生效 ，会覆盖第一个参数，
       return {msg:action.data}
-
       // return {...action.data}
+
+    case RECEIVE_USER: //接收用户
+      return action.data; //将用户的数据全部返回
+
+    case RESET_USER: //重置用户
+      // return {...initUser,msg:action.data}
+      return {...action.data}
 
     default :
        return preState;
